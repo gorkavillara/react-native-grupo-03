@@ -1,11 +1,16 @@
+import Constants from "expo-constants"
 import { StatusBar } from "expo-status-bar"
-import { StyleSheet, View, ImageBackground } from "react-native"
-import bgImage from "./assets/bgImage.png"
+import { StyleSheet, View, ImageBackground, Text } from "react-native"
+import { ComponentsTest } from "./screens"
+// @ts-ignore
+// import bgImage from "./assets/bgImage.png"
 
 export default function App() {
     return (
         <View style={styles.container}>
-            <ImageBackground source={bgImage} style={styles.bg} />
+            <ImageBackground source={require("./assets/bgImage.png")} style={styles.bg}>
+                <ComponentsTest />
+            </ImageBackground>
             <StatusBar style="auto" />
         </View>
     )
@@ -16,7 +21,8 @@ const styles = StyleSheet.create({
         flex: 1
     },
     bg: {
-        flex: 1
+        flex: 1,
+        paddingTop: Constants.statusBarHeight
     },
     titulo: { fontSize: 32, color: "blue" }
 })
