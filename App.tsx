@@ -1,15 +1,23 @@
 import Constants from "expo-constants"
 import { StatusBar } from "expo-status-bar"
-import { StyleSheet, View, ImageBackground, Text } from "react-native"
-import { ComponentsTest } from "./screens"
+import { StyleSheet, View, ImageBackground, Pressable, Text } from "react-native"
+import { RickMorty } from "./screens"
+import { useState } from "react"
 // @ts-ignore
 // import bgImage from "./assets/bgImage.png"
 
 export default function App() {
+    const [mostrarRM, setMostrarRM] = useState(true)
     return (
         <View style={styles.container}>
-            <ImageBackground source={require("./assets/bgImage.png")} style={styles.bg}>
-                <ComponentsTest />
+            <ImageBackground
+                source={require("./assets/bgImage.png")}
+                style={styles.bg}
+            >
+                {mostrarRM && <RickMorty />}
+                {/* <Pressable onPress={() => setMostrarRM(!mostrarRM)}>
+                    <Text>Montar/desmontar RM</Text>
+                </Pressable> */}
             </ImageBackground>
             <StatusBar style="auto" />
         </View>
