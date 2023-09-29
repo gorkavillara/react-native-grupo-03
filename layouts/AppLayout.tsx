@@ -4,9 +4,14 @@ import { StyleSheet, Text, View, ImageBackground } from "react-native"
 import { useContext, PropsWithChildren } from "react"
 import { AppContext } from "../contexts/AppContextProvider"
 import SwitchDarkMode from "../components/common/SwitchDarkMode"
+import { useColorScheme } from "nativewind"
 
 const AppLayout = ({ children }: PropsWithChildren) => {
-    const { darkMode } = useContext(AppContext)
+    const { colorScheme } = useColorScheme()
+    const darkMode = colorScheme === "dark"
+    // console.log(colorScheme.colorScheme)
+
+    // const { darkMode } = useContext(AppContext)
     return (
         <ImageBackground
             source={
