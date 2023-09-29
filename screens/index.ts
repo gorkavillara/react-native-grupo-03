@@ -1,1 +1,3 @@
-export {}
+import StyledScreen from "./StyledScreen"
+
+export { StyledScreen }

@@ -1,4 +1,5 @@
 import { createContext, useState, PropsWithChildren, useReducer } from "react"
+import { useColorScheme } from "react-native"
 import { reductorContador } from "./reducers/contadorReducer"
 
 interface ContextInterface {
@@ -17,7 +18,9 @@ export const AppContext = createContext<ContextInterface>(null!)
 
 const AppContextProvider = ({ children }: PropsWithChildren) => {
     const [mostrarRM, setMostrarRM] = useState(true)
-    const [darkMode, setDarkMode] = useState(false)
+    
+    const colorScheme = useColorScheme()
+    const [darkMode, setDarkMode] = useState(colorScheme === "dark")
     const toggleDarkMode = () => setDarkMode((prev) => !prev)
 
     // const [contador, setContador] = useState(0)

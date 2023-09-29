@@ -1,10 +1,12 @@
-import AppContextProvider from "./contexts/AppContextProvider"
-import AppLayout from "./layouts/AppLayout"
+import { AppContextProvider } from "./contexts"
+import { AppLayout } from "./layouts"
+import { StyledScreen } from "./screens"
 
 export default function App() {
     return (
         <AppContextProvider>
             <AppLayout>
+                <StyledScreen />
             </AppLayout>
         </AppContextProvider>
     )
