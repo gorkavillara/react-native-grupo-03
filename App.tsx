@@ -1,14 +1,17 @@
 import { AppContextProvider } from "./contexts"
-import { AppLayout } from "./layouts"
-import { DimensionsScreen, LoginScreen } from "./screens"
+import { NavigationContainer } from "@react-navigation/native"
+import { StatusBar } from "expo-status-bar"
+import StoreStack from "./navigation/stacks/StoreStack"
 
 export default function App() {
     return (
-        <AppContextProvider>
-            <AppLayout>
-                {/* <DimensionsScreen /> */}
-                <LoginScreen />
-            </AppLayout>
-        </AppContextProvider>
+        <>
+            <NavigationContainer>
+                <AppContextProvider>
+                    <StoreStack />
+                </AppContextProvider>
+            </NavigationContainer>
+            <StatusBar style="auto" />
+        </>
     )
 }

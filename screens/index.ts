@@ -1,4 +1,5 @@
-import DimensionsScreen from "./DimensionsScreen"
-import LoginScreen from "./LoginScreen"
+import Details from "./Details/Details"
+import Home from "./Home/Home"
+import Store from "./Store/Store"
 
-export { DimensionsScreen, LoginScreen }
+export { Details, Home, Store }
