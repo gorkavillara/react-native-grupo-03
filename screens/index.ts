@@ -1,4 +1,4 @@
-import TasksScreen from "./TasksScreen/TasksScreen"
-import StyledScreen from "./StyledScreen"
+import DimensionsScreen from "./DimensionsScreen"
+import LoginScreen from "./LoginScreen"
 
-export { StyledScreen, TasksScreen }
+export { DimensionsScreen, LoginScreen }
