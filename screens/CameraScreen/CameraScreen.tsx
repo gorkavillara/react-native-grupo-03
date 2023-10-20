@@ -1,9 +1,10 @@
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native"
-import { Camera, CameraType } from "expo-camera"
-import React, { useRef } from "react"
+import { StyleSheet, View, TouchableOpacity } from "react-native"
+import Constants from "expo-constants"
+import { Camera } from "expo-camera"
 import { genericStyles } from "../../styles"
 import { useCamera } from "../../hooks/useCamera"
 import Icon from "react-native-vector-icons/Ionicons"
+import { useNavigation } from "@react-navigation/native"
 
 const CameraScreen = () => {
     const {
@@ -17,10 +18,24 @@ const CameraScreen = () => {
         stopRecording,
         barCodeScanned
     } = useCamera()
+    const navigation = useNavigation()
 
     return (
         <View style={genericStyles.container}>
-            <Camera type={cameraType} style={styles.camera} ref={cameraRef} onBarCodeScanned={barCodeScanned}>
+            <Camera
+                type={cameraType}
+                style={styles.camera}
+                ref={cameraRef}
+                onBarCodeScanned={barCodeScanned}
+            >
+                <View>
+                    <TouchableOpacity
+                        style={styles.button}
+                        onPress={navigation.goBack}
+                    >
+                        <Icon name="arrow-back" size={24} color="white" />
+                    </TouchableOpacity>
+                </View>
                 <View style={styles.cameraButtons}>
                     <TouchableOpacity
                         style={styles.button}
@@ -63,11 +78,12 @@ const styles = StyleSheet.create({
     camera: {
         width: "100%",
         height: "100%",
-        justifyContent: "flex-end"
+        paddingTop: Constants.statusBarHeight,
+        padding: 24,
+        justifyContent: "space-between"
     },
     cameraButtons: {
         flexDirection: "row",
-        padding: 24,
         justifyContent: "space-between",
         alignItems: "flex-end"
     },
