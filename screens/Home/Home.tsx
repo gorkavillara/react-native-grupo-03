@@ -3,19 +3,21 @@ import {
     StyleSheet,
     Text,
     View,
-    ImageBackground
+    ImageBackground,
+    TouchableOpacity
 } from "react-native"
 import { BlurView } from "expo-blur"
 import { NativeStackScreenProps } from "@react-navigation/native-stack"
 import { Link } from "@react-navigation/native"
 import { genericStyles } from "../../styles"
-import { StackScreensType } from "../../navigation/stacks/StoreStack"
+import { StackScreensTypeLoggedIn } from "../../navigation/stacks/StoreStack"
+import { useUser } from "../../hooks/useUser"
 
 const Home = ({
     navigation,
     route
-}: NativeStackScreenProps<StackScreensType, "Home">) => {
-    console.log(navigation)
+}: NativeStackScreenProps<StackScreensTypeLoggedIn, "Home">) => {
+    const { logout } = useUser()
     return (
         <ImageBackground
             source={require("../../assets/homeBg.jpg")}
@@ -43,6 +45,9 @@ const Home = ({
                 <Link to="/BuscaPokemon" style={styles.button}>
                     <Text>BuscaPokemon</Text>
                 </Link>
+                <TouchableOpacity onPress={logout}>
+                    <Text style={{color: "white"}}>Log Out</Text>
+                </TouchableOpacity>
             </View>
         </ImageBackground>
     )

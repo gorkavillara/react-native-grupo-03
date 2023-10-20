@@ -2,41 +2,57 @@ import React from "react"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { Product } from "../../models"
 import { BuscaPokemon, Contador, Details, Home, Store } from "../../screens"
+import LogIn from "../../screens/LogIn"
+import { useUser } from "../../hooks/useUser"
 
-export type StackScreensType = {
+export type StackScreensTypeLoggedIn = {
     Home: undefined
     Store: undefined
     Details: { product: Product }
     Contador: undefined
     BuscaPokemon: undefined
 }
+export type StackScreensTypeLoggedOut = {
+    Login: undefined
+}
 
-const Stack = createNativeStackNavigator<StackScreensType>()
+const StackLoggedIn = createNativeStackNavigator<StackScreensTypeLoggedIn>()
+const StackLoggedOut = createNativeStackNavigator<StackScreensTypeLoggedOut>()
 
 const StoreStack = () => {
-    return (
-        <Stack.Navigator initialRouteName="Home">
-            <Stack.Screen
+    const { isLoggedIn, isLoggedInRecoil } = useUser()
+    return isLoggedInRecoil ? (
+        <StackLoggedIn.Navigator initialRouteName="Home">
+            <StackLoggedIn.Screen
                 name="Home"
                 component={Home}
                 options={{
                     title: "Mi aplicación",
-                    // headerLeft: () => <Text>Izquierda</Text>,
-                    // headerRight: () => <Text>Derecha</Text>
                     headerShown: false
                 }}
             />
-            <Stack.Screen
+            <StackLoggedIn.Screen
                 name="Store"
                 component={Store}
                 options={{
                     animation: "slide_from_bottom"
                 }}
             />
-            <Stack.Screen name="Details" component={Details} />
-            <Stack.Screen name="Contador" component={Contador} />
-            <Stack.Screen name="BuscaPokemon" component={BuscaPokemon} />
-        </Stack.Navigator>
+            <StackLoggedIn.Screen name="Details" component={Details} />
+            <StackLoggedIn.Screen name="Contador" component={Contador} />
+            <StackLoggedIn.Screen
+                name="BuscaPokemon"
+                component={BuscaPokemon}
+            />
+        </StackLoggedIn.Navigator>
+    ) : (
+        <StackLoggedOut.Navigator initialRouteName="Login">
+            <StackLoggedOut.Screen
+                name="Login"
+                component={LogIn}
+                options={{ headerShown: false }}
+            />
+        </StackLoggedOut.Navigator>
     )
 }
 
