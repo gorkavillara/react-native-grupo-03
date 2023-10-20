@@ -3,7 +3,7 @@
     "name": "mi-app-con-expo",
     "slug": "mi-app-con-expo",
     "version": "1.0.0",
-    "orientation": "default",
+    "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {

@@ -34,17 +34,17 @@ const Home = ({
                     Home
                 </Text>
                 <Pressable
-                    onPress={() => navigation.navigate("Store")}
+                    onPress={() => navigation.navigate("CameraScreen")}
                     style={styles.button}
                 >
-                    <Text>Ir a la store</Text>
+                    <Text>Ir a la Cámara</Text>
                 </Pressable>
-                <Link to="/Contador" style={styles.button}>
+                {/* <Link to="/Contador" style={styles.button}>
                     <Text>Ir al contador</Text>
                 </Link>
                 <Link to="/BuscaPokemon" style={styles.button}>
                     <Text>BuscaPokemon</Text>
-                </Link>
+                </Link> */}
                 <TouchableOpacity onPress={logout}>
                     <Text style={{color: "white"}}>Log Out</Text>
                 </TouchableOpacity>

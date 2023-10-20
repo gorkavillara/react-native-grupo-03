@@ -10,8 +10,8 @@ interface User {
 
 export const userAtom = atom<null | User>({
     key: "user",
-    default: null
-    // default: { id: 1, username: "gorka", role: "StoreManager" }
+    // default: null
+    default: { id: 1, username: "gorka", role: "StoreManager" }
 })
 
 export const loggedInSelector = selector({
