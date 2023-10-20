@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { Camera } from "expo-camera"
 import * as MediaLibrary from "expo-media-library"
+import * as Location from 'expo-location';
 
 export const usePermissions = () => {
     const [hasAlreadyAsked, setHasAlreadyAsked] = useState(false)
@@ -11,7 +12,7 @@ export const usePermissions = () => {
         Camera.useMicrophonePermissions()
     const [mediaPermissions, requestMediaPermissions] =
         MediaLibrary.usePermissions()
-    
+
     useEffect(() => {
         if (!permissions) return
         if (!permissions.canAskAgain) return
@@ -48,5 +49,8 @@ export const usePermissions = () => {
             })
         }
     }, [mediaPermissions])
+    useEffect(() => {
+        Location.requestForegroundPermissionsAsync()
+    }, [])
     return {}
 }

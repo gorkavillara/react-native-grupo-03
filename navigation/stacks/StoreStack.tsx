@@ -8,7 +8,8 @@ import {
     Home,
     Store,
     CameraScreen,
-    LogIn
+    LogIn,
+    MapsScreen
 } from "../../screens"
 import { useUser } from "../../hooks/useUser"
 
@@ -19,6 +20,7 @@ export type StackScreensTypeLoggedIn = {
     Contador: undefined
     BuscaPokemon: undefined
     CameraScreen: undefined
+    MapsScreen: undefined
 }
 export type StackScreensTypeLoggedOut = {
     Login: undefined
@@ -52,6 +54,11 @@ const StoreStack = () => {
                 name="CameraScreen"
                 options={{ headerShown: false }}
                 component={CameraScreen}
+            />
+            <StackLoggedIn.Screen
+                name="MapsScreen"
+                options={{ headerShown: false }}
+                component={MapsScreen}
             />
             <StackLoggedIn.Screen
                 name="BuscaPokemon"
