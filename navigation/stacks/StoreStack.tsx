@@ -1,12 +1,14 @@
 import React from "react"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { Product } from "../../models"
-import { Details, Home, Store } from "../../screens"
+import { BuscaPokemon, Contador, Details, Home, Store } from "../../screens"
 
 export type StackScreensType = {
     Home: undefined
     Store: undefined
     Details: { product: Product }
+    Contador: undefined
+    BuscaPokemon: undefined
 }
 
 const Stack = createNativeStackNavigator<StackScreensType>()
@@ -32,6 +34,8 @@ const StoreStack = () => {
                 }}
             />
             <Stack.Screen name="Details" component={Details} />
+            <Stack.Screen name="Contador" component={Contador} />
+            <Stack.Screen name="BuscaPokemon" component={BuscaPokemon} />
         </Stack.Navigator>
     )
 }
