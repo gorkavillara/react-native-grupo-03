@@ -5,6 +5,7 @@ import * as MediaLibrary from "expo-media-library"
 import * as Location from "expo-location"
 import * as Notifications from "expo-notifications"
 import { useNotification } from "./useNotification"
+import { useContacts } from "./useContacts"
 
 export const usePermissions = () => {
     const [hasAlreadyAsked, setHasAlreadyAsked] = useState(false)
@@ -18,6 +19,7 @@ export const usePermissions = () => {
         MediaLibrary.usePermissions()
 
     const { initializeNotifications } = useNotification()
+    const { requestContactPermission } = useContacts()
 
     useEffect(() => {
         if (!permissions) return
@@ -80,6 +82,10 @@ export const usePermissions = () => {
             Notifications.removeNotificationSubscription(receivedListener)
             Notifications.removeNotificationSubscription(actionListener)
         }
+    }, [])
+
+    useEffect(() => {
+        requestContactPermission()
     }, [])
     return {}
 }

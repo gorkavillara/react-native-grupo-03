@@ -51,6 +51,12 @@ const Home = ({
                 >
                     <Text>Ir a Notificaciones</Text>
                 </Pressable>
+                <Pressable
+                    onPress={() => navigation.navigate("ContactsScreen")}
+                    style={styles.button}
+                >
+                    <Text>Ir a Contactos</Text>
+                </Pressable>
                 {/* <Link to="/Contador" style={styles.button}>
                     <Text>Ir al contador</Text>
                 </Link>
@@ -58,7 +64,7 @@ const Home = ({
                     <Text>BuscaPokemon</Text>
                 </Link> */}
                 <TouchableOpacity onPress={logout}>
-                    <Text style={{color: "white"}}>Log Out</Text>
+                    <Text style={{ color: "white" }}>Log Out</Text>
                 </TouchableOpacity>
             </View>
         </ImageBackground>

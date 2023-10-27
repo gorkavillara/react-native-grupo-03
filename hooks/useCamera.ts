@@ -1,7 +1,8 @@
 import { useState, useRef } from "react"
 import { BarCodeScanningResult, Camera, CameraType } from "expo-camera"
 import * as MediaLibrary from "expo-media-library"
-import { Linking, ToastAndroid, Vibration } from "react-native"
+import * as Sharing from "expo-sharing"
+import { Linking, ToastAndroid, Vibration, Alert } from "react-native"
 
 export const useCamera = () => {
     const [cameraType, setCameraType] = useState<CameraType>(CameraType.front)
@@ -24,6 +25,7 @@ export const useCamera = () => {
             MediaLibrary.saveToLibraryAsync(res.uri).then((mediaRes) => {
                 console.log(mediaRes)
                 ToastAndroid.show("✅ Foto guardada con éxito", 300)
+                requestSharePicture(res.uri)
             })
         })
     }
@@ -84,4 +86,28 @@ export const useCamera = () => {
         stopRecording,
         barCodeScanned
     }
+}
+
+const requestSharePicture = (uri: string) => {
+    Alert.alert(
+        "Compartir Foto",
+        "📷 ¿Quieres compartir la foto que acabas de realizar?",
+        [
+            {
+                text: "Compartir",
+                onPress: () => sharePicture(uri)
+            },
+            {
+                text: "Cancelar"
+            }
+        ]
+    )
+}
+
+const sharePicture = (uri: string) => {
+    Sharing.isAvailableAsync().then((isAvailable) => {
+        if (!isAvailable) return
+
+        Sharing.shareAsync(uri)
+    })
 }

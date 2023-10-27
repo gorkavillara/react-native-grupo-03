@@ -7,5 +7,17 @@ import CameraScreen from "./CameraScreen/CameraScreen"
 import LogIn from "./LogIn"
 import MapsScreen from "./MapsScreen/MapsScreen"
 import NotificationsScreen from "./NotificationsScreen"
+import ContactsScreen from "./ContactsScreen"
 
-export { Details, Home, Store, Contador, BuscaPokemon, CameraScreen, LogIn, MapsScreen, NotificationsScreen }
+export {
+    Details,
+    Home,
+    Store,
+    Contador,
+    BuscaPokemon,
+    CameraScreen,
+    LogIn,
+    MapsScreen,
+    NotificationsScreen,
+    ContactsScreen
+}
