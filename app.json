@@ -26,10 +26,16 @@
         "googleMaps": {
           "apiKey": ""
         }
-      }
+      },
+      "package": "com.gorkavillara.aprendizajegrupo03"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "89cecb8c-e55a-4c5c-bdb1-9008c8a5b92a"
+      }
     }
   }
 }

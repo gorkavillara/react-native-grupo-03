@@ -45,6 +45,12 @@ const Home = ({
                 >
                     <Text>Ir a Mapas</Text>
                 </Pressable>
+                <Pressable
+                    onPress={() => navigation.navigate("NotificationsScreen")}
+                    style={styles.button}
+                >
+                    <Text>Ir a Notificaciones</Text>
+                </Pressable>
                 {/* <Link to="/Contador" style={styles.button}>
                     <Text>Ir al contador</Text>
                 </Link>

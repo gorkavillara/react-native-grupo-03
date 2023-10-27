@@ -1,17 +1,23 @@
 import { useState, useEffect } from "react"
+import { ToastAndroid } from "react-native"
 import { Camera } from "expo-camera"
 import * as MediaLibrary from "expo-media-library"
-import * as Location from 'expo-location';
+import * as Location from "expo-location"
+import * as Notifications from "expo-notifications"
+import { useNotification } from "./useNotification"
 
 export const usePermissions = () => {
     const [hasAlreadyAsked, setHasAlreadyAsked] = useState(false)
     const [hasAlreadyAskedAudio, setHasAlreadyAskedAudio] = useState(false)
     const [hasAlreadyAskedMedia, setHasAlreadyAskedMedia] = useState(false)
+
     const [permissions, requestPermissions] = Camera.useCameraPermissions()
     const [audioPermissions, requestAudioPermissions] =
         Camera.useMicrophonePermissions()
     const [mediaPermissions, requestMediaPermissions] =
         MediaLibrary.usePermissions()
+
+    const { initializeNotifications } = useNotification()
 
     useEffect(() => {
         if (!permissions) return
@@ -51,6 +57,29 @@ export const usePermissions = () => {
     }, [mediaPermissions])
     useEffect(() => {
         Location.requestForegroundPermissionsAsync()
+    }, [])
+
+    useEffect(() => {
+        const receivedListener = Notifications.addNotificationReceivedListener(
+            (notification) => {
+                ToastAndroid.show(
+                    `Notificación recibida: ${notification.request.content.title}`,
+                    300
+                )
+            }
+        )
+        const actionListener = Notifications.addNotificationResponseReceivedListener(
+            response => {
+                console.log(response)
+            }
+        )
+
+        initializeNotifications()
+
+        return () => {
+            Notifications.removeNotificationSubscription(receivedListener)
+            Notifications.removeNotificationSubscription(actionListener)
+        }
     }, [])
     return {}
 }
